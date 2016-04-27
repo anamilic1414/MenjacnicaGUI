@@ -80,15 +80,15 @@ public class MenjacnicaGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\sa c\\Desktop\\sp-cukaricki-navijaci_620x0.jpg"));
 		setTitle("Menja\u010Dnica");
-		setBounds(100, 100, 785, 340);
+		setBounds(100, 100, 659, 388);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(120, 10));
 		setContentPane(contentPane);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		contentPane.add(getPanel(), BorderLayout.EAST);
 		contentPane.add(getScrollPane(), BorderLayout.SOUTH);
-		contentPane.add(getScrollPane_1(), BorderLayout.NORTH);
+		contentPane.add(getScrollPane_1());
 		addWindowListener(new WindowAdapter() {
 
 			@Override
@@ -191,6 +191,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JScrollPane getScrollPane_1() {
 		if (scrollPane_1 == null) {
 			scrollPane_1 = new JScrollPane();
+			scrollPane_1.setRequestFocusEnabled(false);
+			scrollPane_1.setOpaque(false);
 			scrollPane_1.setViewportView(getTable_1());
 		}
 		return scrollPane_1;
@@ -337,6 +339,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmDodajKurs() {
 		if (mntmDodajKurs == null) {
 			mntmDodajKurs = new JMenuItem("Dodaj kurs");
+			mntmDodajKurs.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIKontroler.pokreniDodajKursProzor();
+				}
+			});
 		}
 		return mntmDodajKurs;
 	}
