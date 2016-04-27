@@ -76,4 +76,14 @@ public class GUIKontroler {
 		kurs.remove(k);
 		glavniProzor.osveziTabelu();
 	}
+	
+	public static void pokreniIzvrsiZamenuProzor(){
+		IzvrsiZamenuProzor prozor = new IzvrsiZamenuProzor();
+		prozor.setVisible(true);
+		prozor.setLocationRelativeTo(null);
+	}
+	
+	public static void ispisiZamenu(String valuta, double iznos, String izbor){
+		glavniProzor.ispisiZamenu(valuta, iznos, izbor);
+	}
 }

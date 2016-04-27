@@ -167,6 +167,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzvriZamenu() {
 		if (btnIzvriZamenu == null) {
 			btnIzvriZamenu = new JButton("Izvr\u0161i zamenu");
+			btnIzvriZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniIzvrsiZamenuProzor();
+				}
+			});
 			btnIzvriZamenu.setPreferredSize(new Dimension(115, 25));
 		}
 		return btnIzvriZamenu;
@@ -194,7 +199,7 @@ public class MenjacnicaGUI extends JFrame {
 		return textArea;
 	}
 
-	public static void upisiUPolje(double sifra, String naziv, double prodajni, double kupovni, double srednji,
+	public void upisiUPolje(double sifra, String naziv, double prodajni, double kupovni, double srednji,
 			String skraceni) {
 		Kurs k = new Kurs();
 		k.setSifra(sifra);
@@ -209,6 +214,10 @@ public class MenjacnicaGUI extends JFrame {
 		catch(Exception e){
 			textArea.setText(textArea.getText() + ""+e.getMessage());
 		}
+	}
+	
+	public void ispisiZamenu(String valuta, double iznos, String izbor){
+		textArea.setText(textArea.getText()+izbor + " valute "+valuta+ " je "+iznos);
 	}
 
 	private JScrollPane getScrollPane_1() {
@@ -387,6 +396,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIzvriZamenu() {
 		if (mntmIzvriZamenu == null) {
 			mntmIzvriZamenu = new JMenuItem("Izvrši zamenu");
+			mntmIzvriZamenu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.pokreniIzvrsiZamenuProzor();
+				}
+			});
 		}
 		return mntmIzvriZamenu;
 	}

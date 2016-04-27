@@ -31,7 +31,6 @@ public class DodajKursGUI extends JFrame {
 	private JTextField txtSkraceniNaziv;
 	private JButton btnDodaj;
 	private JButton btnOdustani;
-	private MenjacnicaGUI menjacnica;
 
 	/**
 	 * Create the frame.
@@ -153,9 +152,6 @@ public class DodajKursGUI extends JFrame {
 		return txtSkraceniNaziv;
 	}
 
-	public void Dodaj(double sifra, String naziv, double prodajni, double kuovni, double srednji, String skraceni) {
-
-	}
 
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
@@ -183,7 +179,7 @@ public class DodajKursGUI extends JFrame {
 			btnOdustani = new JButton("Odustani");
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-	
+					toBack();
 				}
 			});
 		}
