@@ -144,7 +144,7 @@ public class MenjacnicaGUI extends JFrame {
 				Kurs k = model.vratiKurs(index);
 				GUIKontroler.izbrisiRed(k);
 				JOptionPane.showInternalMessageDialog(contentPane, "Uspešno ste izvršili brisanje!");
-				textArea.setText(textArea.getText()+ "Izbrisan je red sa indeksom: "+index+"!");
+				textArea.setText(textArea.getText()+ "Izbrisan je red sa indeksom: "+index+"!"+"\n");
 			}else {
 				JOptionPane.showMessageDialog(contentPane, "Neuspešno brisanje!");
 			}
@@ -217,7 +217,7 @@ public class MenjacnicaGUI extends JFrame {
 	}
 	
 	public void ispisiZamenu(String valuta, double iznos, String izbor){
-		textArea.setText(textArea.getText()+izbor + " valute "+valuta+ " je "+iznos);
+		textArea.setText(textArea.getText()+izbor + " valute "+valuta+ " je "+iznos+ "\n");
 	}
 
 	private JScrollPane getScrollPane_1() {

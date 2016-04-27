@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -134,6 +135,7 @@ public class IzvrsiZamenuProzor extends JFrame {
 	private JRadioButton getRdKupovina() {
 		if (rdKupovina == null) {
 			rdKupovina = new JRadioButton("Kupovina");
+			rdKupovina.setSelected(true);
 			buttonGroup.add(rdKupovina);
 			rdKupovina.setBounds(229, 118, 109, 23);
 		}
@@ -156,15 +158,15 @@ public class IzvrsiZamenuProzor extends JFrame {
 				}
 			});
 			slider.setSnapToTicks(true);
-			slider.setValueIsAdjusting(true);
 			slider.setPaintTicks(true);
 			slider.setPaintLabels(true);
-			slider.setMinorTickSpacing(1);
+			slider.setMinorTickSpacing(5);
 			slider.setMajorTickSpacing(10);
 			slider.setBounds(35, 180, 318, 45);
 		}
 		return slider;
 	}
+	
 	private JButton getBtnIzvriZamenu() {
 		if (btnIzvriZamenu == null) {
 			btnIzvriZamenu = new JButton("Izvr\u0161i zamenu");
@@ -173,10 +175,12 @@ public class IzvrsiZamenuProzor extends JFrame {
 					String valuta = (String) comboBox.getSelectedItem();
 					double iznos = Double.parseDouble(txtIznos.getText());
 					String izbor;
-					if(buttonGroup.getSelection().equals(getRdKupovina())){
-						izbor = "Kupovina";
-					}else
+					if(getRdProdaja().isSelected()){
 						izbor = "Prodaja";
+					}else{
+						izbor = "Kupovina";
+						}
+					
 					GUIKontroler.ispisiZamenu(valuta, iznos, izbor);
 					
 				}
@@ -196,5 +200,115 @@ public class IzvrsiZamenuProzor extends JFrame {
 			btnOdustani.setBounds(223, 248, 130, 28);
 		}
 		return btnOdustani;
+
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((btnIzvriZamenu == null) ? 0 : btnIzvriZamenu.hashCode());
+		result = prime * result + ((btnOdustani == null) ? 0 : btnOdustani.hashCode());
+		result = prime * result + ((buttonGroup == null) ? 0 : buttonGroup.hashCode());
+		result = prime * result + ((comboBox == null) ? 0 : comboBox.hashCode());
+		result = prime * result + ((contentPane == null) ? 0 : contentPane.hashCode());
+		result = prime * result + ((lblIznos == null) ? 0 : lblIznos.hashCode());
+		result = prime * result + ((lblKupovniKurs == null) ? 0 : lblKupovniKurs.hashCode());
+		result = prime * result + ((lblProdajniKurs == null) ? 0 : lblProdajniKurs.hashCode());
+		result = prime * result + ((lblVrstaTransakcije == null) ? 0 : lblVrstaTransakcije.hashCode());
+		result = prime * result + ((rdKupovina == null) ? 0 : rdKupovina.hashCode());
+		result = prime * result + ((rdProdaja == null) ? 0 : rdProdaja.hashCode());
+		result = prime * result + ((slider == null) ? 0 : slider.hashCode());
+		result = prime * result + ((txtIznos == null) ? 0 : txtIznos.hashCode());
+		result = prime * result + ((txtKupovni == null) ? 0 : txtKupovni.hashCode());
+		result = prime * result + ((txtProdajni == null) ? 0 : txtProdajni.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IzvrsiZamenuProzor other = (IzvrsiZamenuProzor) obj;
+		if (btnIzvriZamenu == null) {
+			if (other.btnIzvriZamenu != null)
+				return false;
+		} else if (!btnIzvriZamenu.equals(other.btnIzvriZamenu))
+			return false;
+		if (btnOdustani == null) {
+			if (other.btnOdustani != null)
+				return false;
+		} else if (!btnOdustani.equals(other.btnOdustani))
+			return false;
+		if (buttonGroup == null) {
+			if (other.buttonGroup != null)
+				return false;
+		} else if (!buttonGroup.equals(other.buttonGroup))
+			return false;
+		if (comboBox == null) {
+			if (other.comboBox != null)
+				return false;
+		} else if (!comboBox.equals(other.comboBox))
+			return false;
+		if (contentPane == null) {
+			if (other.contentPane != null)
+				return false;
+		} else if (!contentPane.equals(other.contentPane))
+			return false;
+		if (lblIznos == null) {
+			if (other.lblIznos != null)
+				return false;
+		} else if (!lblIznos.equals(other.lblIznos))
+			return false;
+		if (lblKupovniKurs == null) {
+			if (other.lblKupovniKurs != null)
+				return false;
+		} else if (!lblKupovniKurs.equals(other.lblKupovniKurs))
+			return false;
+		if (lblProdajniKurs == null) {
+			if (other.lblProdajniKurs != null)
+				return false;
+		} else if (!lblProdajniKurs.equals(other.lblProdajniKurs))
+			return false;
+		if (lblVrstaTransakcije == null) {
+			if (other.lblVrstaTransakcije != null)
+				return false;
+		} else if (!lblVrstaTransakcije.equals(other.lblVrstaTransakcije))
+			return false;
+		if (rdKupovina == null) {
+			if (other.rdKupovina != null)
+				return false;
+		} else if (!rdKupovina.equals(other.rdKupovina))
+			return false;
+		if (rdProdaja == null) {
+			if (other.rdProdaja != null)
+				return false;
+		} else if (!rdProdaja.equals(other.rdProdaja))
+			return false;
+		if (slider == null) {
+			if (other.slider != null)
+				return false;
+		} else if (!slider.equals(other.slider))
+			return false;
+		if (txtIznos == null) {
+			if (other.txtIznos != null)
+				return false;
+		} else if (!txtIznos.equals(other.txtIznos))
+			return false;
+		if (txtKupovni == null) {
+			if (other.txtKupovni != null)
+				return false;
+		} else if (!txtKupovni.equals(other.txtKupovni))
+			return false;
+		if (txtProdajni == null) {
+			if (other.txtProdajni != null)
+				return false;
+		} else if (!txtProdajni.equals(other.txtProdajni))
+			return false;
+		return true;
+	}
+	
+	
 }
