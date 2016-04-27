@@ -133,26 +133,30 @@ public class MenjacnicaGUI extends JFrame {
 	}
 	
 
+	public void izmeni(){
+		int index = table.getSelectedRow();
+		if(index == -1)
+			GUIKontroler.birajRed();
+		else {
+			int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da izbrišete red?", "Poruka", JOptionPane.YES_NO_OPTION);
+			if(opcija == JOptionPane.YES_OPTION){
+				KursTableModel model = (KursTableModel) table.getModel();
+				Kurs k = model.vratiKurs(index);
+				GUIKontroler.izbrisiRed(k);
+				JOptionPane.showInternalMessageDialog(contentPane, "Uspešno ste izvršili brisanje!");
+				textArea.setText(textArea.getText()+ "Izbrisan je red sa indeksom: "+index+"!");
+			}else {
+				JOptionPane.showMessageDialog(contentPane, "Neuspešno brisanje!");
+			}
+		}
+	}
+	
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
 			btnIzmeni = new JButton("Izmeni");
 			btnIzmeni.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int index = table.getSelectedRow();
-					if(index == -1)
-						GUIKontroler.birajRed();
-					else {
-						int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da izbrišete red?", "Poruka", JOptionPane.YES_NO_OPTION);
-						if(opcija == JOptionPane.YES_OPTION){
-							KursTableModel model = (KursTableModel) table.getModel();
-							Kurs k = model.vratiKurs(index);
-							GUIKontroler.izbrisiRed(k);
-							JOptionPane.showInternalMessageDialog(contentPane, "Uspešno ste izvršili brisanje!");
-							textArea.setText(textArea.getText()+ "Izbrisan je red sa indeksom: "+index+"!");
-						}else {
-							JOptionPane.showMessageDialog(contentPane, "Neuspešno brisanje!");
-						}
-					}
+					izmeni();
 				}
 			});
 			btnIzmeni.setPreferredSize(new Dimension(115, 25));
@@ -371,6 +375,11 @@ public class MenjacnicaGUI extends JFrame {
 	private JMenuItem getMntmIymeni() {
 		if (mntmIymeni == null) {
 			mntmIymeni = new JMenuItem("Izmeni");
+			mntmIymeni.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					izmeni();
+				}
+			});
 		}
 		return mntmIymeni;
 	}
