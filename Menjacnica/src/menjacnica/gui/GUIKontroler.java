@@ -66,4 +66,14 @@ public class GUIKontroler {
 		prozor.setVisible(true);
 		prozor.setLocationRelativeTo(null);
 	}
+	
+	public static void birajRed(){
+		JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Izaberite red za brisanje iz tabele!",
+				"Greska", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public static void izbrisiRed(Kurs k){
+		kurs.remove(k);
+		glavniProzor.osveziTabelu();
+	}
 }

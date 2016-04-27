@@ -136,6 +136,25 @@ public class MenjacnicaGUI extends JFrame {
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
 			btnIzmeni = new JButton("Izmeni");
+			btnIzmeni.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int index = table.getSelectedRow();
+					if(index == -1)
+						GUIKontroler.birajRed();
+					else {
+						int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da izbrišete red?", "Poruka", JOptionPane.YES_NO_OPTION);
+						if(opcija == JOptionPane.YES_OPTION){
+							KursTableModel model = (KursTableModel) table.getModel();
+							Kurs k = model.vratiKurs(index);
+							GUIKontroler.izbrisiRed(k);
+							JOptionPane.showInternalMessageDialog(contentPane, "Uspešno ste izvršili brisanje!");
+							textArea.setText(textArea.getText()+ "Izbrisan je red sa indeksom: "+index+"!");
+						}else {
+							JOptionPane.showMessageDialog(contentPane, "Neuspešno brisanje!");
+						}
+					}
+				}
+			});
 			btnIzmeni.setPreferredSize(new Dimension(115, 25));
 		}
 		return btnIzmeni;
@@ -201,7 +220,8 @@ public class MenjacnicaGUI extends JFrame {
 	private JTable getTable_1() {
 		if (table == null) {
 			table = new JTable();
-			table.setEnabled(false);
+			table.setColumnSelectionAllowed(true);
+			table.setCellSelectionEnabled(true);
 			table.setModel(new KursTableModel(GUIKontroler.getKurs()));
 			table.setFillsViewportHeight(true);
 			addPopup(table, getPopupMenu());

@@ -183,6 +183,7 @@ public class DodajKursGUI extends JFrame {
 			btnOdustani = new JButton("Odustani");
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+	
 				}
 			});
 		}
